@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Poll</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <h1>Create a Poll</h1>
+        <a href="index.html">Back to Polls</a>
+    </nav>
+
+    <div class="poll-form">
+        <input type="text" id="poll-title" placeholder="Enter poll question">
+        
+        <label for="categories">Select Category:</label>
+        <select id="poll-category">
+            <option value="sports">Sports</option>
+            <option value="politics">Politics</option>
+            <option value="technology">Technology</option>
+            <option value="entertainment">Entertainment</option>
+        </select>
+
+        <h3>Options:</h3>
+        <input type="text" class="poll-option" placeholder="Option 1">
+        <input type="text" class="poll-option" placeholder="Option 2">
+        
+        <button onclick="createPoll()">Create Poll</button>
+    </div>
+</body>
+</html>
