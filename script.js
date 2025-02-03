@@ -63,11 +63,15 @@ function createPoll() {
 }
 
 // Display Polls
-function displayPolls() {
+function displayPolls(filteredPolls = null) {
     let container = document.getElementById("polls-container");
     container.innerHTML = "";
 
-    polls.forEach((poll, index) => {
+    let displayedPolls = filteredPolls || polls;
+
+    displayedPolls.forEach((poll, index) => {
+        let totalVotes = poll.votes.reduce((a, b) => a + b, 0);
+        
         let pollDiv = document.createElement("div");
         pollDiv.classList.add("poll-container");
         pollDiv.innerHTML = `
@@ -77,7 +81,7 @@ function displayPolls() {
             ${poll.options.map((opt, i) => `
                 <label>
                     <input type="radio" name="poll${index}" value="${i}">
-                    ${opt}
+                    ${opt} (${totalVotes > 0 ? ((poll.votes[i] / totalVotes) * 100).toFixed(1) + "%" : "0%"})
                 </label><br>
             `).join("")}
             <button onclick="vote(${index})">Vote</button>
@@ -93,6 +97,7 @@ function vote(index) {
         polls[index].votes[selected.value]++;
         localStorage.setItem("polls", JSON.stringify(polls));
         alert("Vote recorded!");
+        displayPolls(); // Refresh the poll results after voting
     } else {
         alert("Select an option before voting!");
     }
