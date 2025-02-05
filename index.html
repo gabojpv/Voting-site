@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Polls</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <h1>Voting Polls</h1>
+        <a href="create_poll.html">Create Poll</a>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="category-filter">
+        <label for="categories">Filter by Category:</label>
+        <select id="categories" onchange="filterPolls()">
+            <option value="all">All</option>
+            <option value="sports">Sports</option>
+            <option value="politics">Politics</option>
+            <option value="technology">Technology</option>
+            <option value="entertainment">Entertainment</option>
+        </select>
+    </div>
+
+    <div id="polls-container">
+        <!-- Polls will be dynamically added here -->
+    </div>
+
+    <script>
+        if (!localStorage.getItem("loggedInUser")) {
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
